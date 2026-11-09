@@ -20,6 +20,7 @@ public class Proveedor {
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccionPostal = direccionPostal;
+
     }
 
     public Proveedor() {
