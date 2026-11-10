@@ -1,6 +1,10 @@
 import org.egibide.proyecto3.Metodos.MetodosProveedor;
+import org.egibide.proyecto3.Modelo.Menus;
 
+import java.awt.*;
 import java.util.Scanner;
+
+import static org.egibide.proyecto3.Modelo.Menus.validarOpciones;
 
 public class app {
     public static void main(String[] args) {
@@ -19,9 +23,10 @@ public class app {
 
             switch (opcion) {
                 case 1:
-                    MenuProveedores(scanner);
+                    Menus.MenuProveedores(scanner);
                     break;
                 case 2:
+                    Menus.MenuGestionPiezas(scanner);
                     break;
                 case 3:
                     break;
@@ -35,63 +40,6 @@ public class app {
 
 
         } while (opcion != 0);
-
-
-    }
-
-    public static void MenuProveedores(Scanner scanner) {
-        int opcion;
-        do {
-            System.out.println("""
-                      1-Agregar proveedores
-                      2-Eliminar proveedores
-                      3-Modificar proveedores
-                      4-Buscar proveedores
-                      5-mostrar proveedores
-                      0-volver Menu
-                    \s""");
-
-            opcion = validarOpciones(scanner);
-            switch (opcion) {
-                case 1:
-                    MetodosProveedor.agregarProveedores(scanner);
-                    break;
-                case 2:
-                    MetodosProveedor.eliminarProveedores(scanner);
-                    break;
-                case 3:
-                    MetodosProveedor.ModificarProveedores(scanner);
-                    break;
-                case 4:
-                    break;
-                case 5:
-                    MetodosProveedor.listarProveedores(scanner);
-
-
-            }
-
-        } while (opcion != 0);
-        scanner.close();
-
-    }
-
-
-    public static int validarOpciones(Scanner scanner) {
-        int opcion = 0;
-        boolean opcionValida = false;
-        while (!opcionValida) {
-            try {
-                System.out.println("Ingrese una opcion: ");
-                opcion = Integer.parseInt(scanner.nextLine());
-                opcionValida = true;
-
-            } catch (NumberFormatException e) {
-                System.out.println("Opcion no valida");
-            }
-
-
-        }
-        return opcion;
 
 
     }

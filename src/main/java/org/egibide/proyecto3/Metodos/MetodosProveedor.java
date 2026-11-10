@@ -24,6 +24,7 @@ public class MetodosProveedor {
         ProveedorDao proveedorDao = new ProveedorDao();
         proveedorDao.create(proveedor);
         System.out.println("Proveedor agregado correctamente. . . . . .  fucking proyectos ................1");
+
     }
 
     public static void eliminarProveedores(Scanner scanner) {
