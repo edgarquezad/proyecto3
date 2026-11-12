@@ -1,9 +1,5 @@
-import org.egibide.proyecto3.Metodos.MetodosProveedor;
 import org.egibide.proyecto3.Modelo.Menus;
-
-import java.awt.*;
 import java.util.Scanner;
-
 import static org.egibide.proyecto3.Modelo.Menus.validarOpciones;
 
 public class app {
@@ -29,7 +25,7 @@ public class app {
                     Menus.MenuGestionPiezas(scanner);
                     break;
                 case 3:
-                    break;
+
                 case 4:
                     break;
                 case 0:

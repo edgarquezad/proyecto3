@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface IPiezasDao {
     List<Piezas> listarPiezas();
+
+    List<Piezas> listarPieza(String nombre,String codigo);
 }

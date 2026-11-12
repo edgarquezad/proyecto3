@@ -55,15 +55,24 @@ public class Menus {
             seleccion = validarOpciones(scanner);
             switch (seleccion) {
                 case 1:
-                    MetodosPiezas.AgregarPiezas(scanner);
+                    MetodosPiezas.agregarPiezas(scanner);
                     break;
                 case 2:
-                    MetodosPiezas.EliminarPiezas(scanner);
+                    MetodosPiezas.eliminarPiezas(scanner);
+                    break;
+                case 3:
+                    MetodosPiezas.modificarPiezas(scanner);
+                    break;
 
+                case 4:
+                    MetodosPiezas.buscarPiezas(scanner);
 
+                    break;
+                case 5:
+                    MetodosPiezas.mostrarPiezas(scanner);
+                    break;
 
             }
-
 
         } while (seleccion != 0);
     }
@@ -89,7 +98,7 @@ public class Menus {
 
     }
 
-    public static double validarEnteros(Scanner scanner) {
+    public static Double validarPrecio(Scanner scanner) {
         double opcion = 0;
         boolean opcionValida = false;
         while (!opcionValida) {
@@ -105,7 +114,7 @@ public class Menus {
 
 
         }
-        return  opcion;
+        return opcion;
 
 
     }
