@@ -6,36 +6,32 @@ import org.egibide.proyecto3.Modelo.Piezas;
 import java.util.List;
 import java.util.Scanner;
 
-import static org.egibide.proyecto3.Modelo.Menus.validarPrecio;
-
 public class MetodosPiezas {
+
     public static void agregarPiezas(Scanner scanner) {
         PiezasDao piezasDao = new PiezasDao();
-        System.out.println("----Agregar piezas----");
-        System.out.println("Codigo de piezas");
-        String codigoPiezas = scanner.nextLine();
-        if (!piezasDao.listarPiezas().isEmpty()) {
-            for (Piezas piezas : piezasDao.listarPiezas()) {
-                if (piezas.getCodigoPieza().equals(codigoPiezas)) {
-                    System.out.println("Codigo de piezas ya existe");
-                } else {
-                    System.out.println("Nombre: ");
-                    String nombrePiezas = scanner.nextLine();
 
-                    double precioPiezas = validarPrecio(scanner);
+        System.out.println("Codigo de pieza:");
+        String codigoPieza = scanner.next();
+        Piezas piezas = piezasDao.find(codigoPieza);
 
-                    System.out.println("Descripcion: ");
-                    String descripcionPiezas = scanner.nextLine();
+        if (piezas != null) {
+            System.out.println("Pieza ya existe");
+        } else {
+            System.out.println("Nombre de pieza: ");
+            String nombrePieza = scanner.nextLine();
 
+            System.out.println("Precio :");
+            double precioPieza = Validaciones.validarPrecio(scanner);
 
-                    piezas = new Piezas(codigoPiezas, nombrePiezas, precioPiezas, descripcionPiezas);
-                    piezasDao.create(piezas);
-                    System.out.println("Piezas agregadas correctamente ");
+            System.out.println("Descripcion :");
+            String descripcionPieza = scanner.nextLine();
 
-                }
-            }
-
+            piezas = new Piezas(codigoPieza, nombrePieza, precioPieza, descripcionPieza);
+            piezasDao.create(piezas);
+            System.out.println("Piezas agregada correctamente");
         }
+
 
     }
 
@@ -45,8 +41,8 @@ public class MetodosPiezas {
         if (!piezasDao.listarPiezas().isEmpty()) {
             for (Piezas piezas : piezasDao.listarPiezas()) {
                 System.out.println("Piezas existentes " +
-                        "\nCodigo pieza : " + piezas.getCodigoPieza()
-                        + "\nNombre : " + piezas.getNombre()
+                        "\nCodigo pieza : " + piezas.getCodigoPieza() +
+                        "\nNombre : " + piezas.getNombre()
                 );
             }
             System.out.print("Introduce codigo de pieza a eliminar: ");
@@ -56,10 +52,9 @@ public class MetodosPiezas {
             if (piezas != null) {
                 piezasDao.delete(piezas);
                 System.out.println("Piezas eliminadas correctamente ");
-            }else {
+            } else {
                 System.out.println("Piezas no encontrada");
             }
-
 
         } else {
             System.out.println("No hay piezas disponibles para eliminar ");
@@ -67,8 +62,9 @@ public class MetodosPiezas {
 
     }
 
-    public static void mostrarPiezas(Scanner scanner) {
+    public static void mostrarPiezas() {
         PiezasDao piezasDao = new PiezasDao();
+
         List<Piezas> listaPiezas = piezasDao.listarPiezas();
         if (listaPiezas.isEmpty()) {
             System.out.println("No existen piezas disponibles");
@@ -86,13 +82,17 @@ public class MetodosPiezas {
 
     public static void modificarPiezas(Scanner scanner) {
         PiezasDao piezasDao = new PiezasDao();
+
         System.out.println("Codigo de pieza a modificar: ");
         String codigoPiezas = scanner.nextLine();
         Piezas pieza = piezasDao.find(codigoPiezas);
 
         if (pieza != null) {
-            System.out.println("Pieza encontrada \n" +
-                    "Nombre: " + pieza.getNombre());
+            System.out.println("Pieza encontrada " +
+                    "\nNombre: " + pieza.getNombre() +
+                    "\nCodigoPieza: " + pieza.getCodigoPieza()
+            );
+
             System.out.println("Modificar Nombre o pulsa enter para continuar  ");
             String nuevoNombre = scanner.nextLine();
             if (!nuevoNombre.isEmpty()) {
@@ -100,15 +100,14 @@ public class MetodosPiezas {
             }
 
             System.out.println("Modificar Precio o enter para continuar : ");
-            Double nuevoPrecioPiezas = validarPrecio(scanner);
+            Double nuevoPrecioPiezas = Validaciones.validarPrecio(scanner);
             if (nuevoPrecioPiezas != null) {
                 pieza.setPrecio(nuevoPrecioPiezas);
-
             }
-
 
             System.out.println("Modificar Descripcion o enter para continuar ");
             String nuevoDescripcion = scanner.nextLine();
+
             if (!nuevoDescripcion.isEmpty()) {
                 pieza.setDescripcion(nuevoDescripcion);
             }
@@ -132,13 +131,13 @@ public class MetodosPiezas {
 
         if (!piezas.isEmpty()) {
             for (Piezas pieza : piezas) {
-                System.out.println(pieza.getNombre());
-                System.out.println(pieza.getPrecio());
+                System.out.println("Nombre: " + pieza.getNombre());
+                System.out.println("Precio: " + pieza.getPrecio());
+                System.out.println("Descripcion: " + pieza.getDescripcion());
             }
         } else {
             System.out.println("No se encontro ninguna pieza con los datos introducidos ");
         }
-
 
     }
 

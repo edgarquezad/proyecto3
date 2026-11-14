@@ -25,12 +25,12 @@ public class Proyecto {
     public Proyecto() {
     }
 
-    public String getCodigoPoryecto() {
+    public String getCodigoProyecto() {
         return codigoProyecto;
     }
 
-    public void setCodigoPoryecto(String codigoPoryecto) {
-        this.codigoProyecto = codigoPoryecto;
+    public void setCodigoProyecto(String códigoProyecto) {
+        this.codigoProyecto = códigoProyecto;
     }
 
     public String getNombre() {
@@ -60,7 +60,7 @@ public class Proyecto {
     @Override
     public String toString() {
         return "Proyecto{" +
-                "codigoPoryecto='" + codigoProyecto + '\'' +
+                "codigoProyecto='" + codigoProyecto + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", ciudad='" + ciudad + '\'' +
                 ", gestiones=" + gestiones +

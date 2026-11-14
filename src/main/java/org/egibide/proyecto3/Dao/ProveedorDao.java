@@ -15,7 +15,8 @@ public class ProveedorDao extends Dao<Proveedor, String> implements IProveedorDa
 
     @Override
     public List<Proveedor> buscarPorNombre(String nombre) {
-        return List.of();
+        return em.createQuery("select p from Proveedor p where nombre = :nombre", Proveedor.class)
+                .setParameter("nombre", nombre).getResultList();
     }
 
     @Override
@@ -24,8 +25,20 @@ public class ProveedorDao extends Dao<Proveedor, String> implements IProveedorDa
     }
 
     @Override
-    public List<Proveedor> buscarPorDireccion(String direccion) {
-        return List.of();
+    public List<Proveedor> buscarPorDireccion(String direccionPostal) {
+        return em.createQuery("SELECT p from Proveedor p where direccionPostal = :direccionP",Proveedor.class)
+                .setParameter("direccionP", direccionPostal).getResultList();
+    }
+
+    @Override
+    public List<Proveedor> buscar(String direccionPostal, String nombre, String codigo) {
+        return em.createQuery("SELECT p from Proveedor p " +
+                        "where direccionPostal = :direccionP or nombre=:nombre or codigo =:codigo",
+                        Proveedor.class)
+                .setParameter("direccionP", direccionPostal)
+                .setParameter("nombre", nombre)
+                .setParameter("codigo", codigo)
+                .getResultList();
     }
 
 }

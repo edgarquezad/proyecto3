@@ -8,7 +8,10 @@ public interface IProveedorDao {
     Proveedor find(String codigo);
 
     List<Proveedor> buscarPorNombre(String nombre);
+
     List<Proveedor> obtenerTodos();
 
-    List<Proveedor> buscarPorDireccion(String direccion);
+    List<Proveedor> buscarPorDireccion(String direccionPostal);
+
+    List<Proveedor> buscar(String direccionPostal,String nombre,String codigo);
 }

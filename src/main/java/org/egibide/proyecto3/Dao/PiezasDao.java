@@ -9,8 +9,7 @@ public class PiezasDao extends Dao<Piezas, String> implements IPiezasDao {
 
     @Override
     public Piezas find(String codigo) {
-        Piezas pieza = em.find(Piezas.class, codigo);
-        return pieza;
+        return em.find(Piezas.class, codigo);
     }
 
     @Override
@@ -20,7 +19,8 @@ public class PiezasDao extends Dao<Piezas, String> implements IPiezasDao {
 
     @Override
     public List<Piezas> listarPieza(String nombre, String codigo) {
-        return em.createQuery("select p from Piezas p where p.nombre =:nombre OR p.codigoPieza = :codigoP",
+        return em.createQuery("select p from Piezas p " +
+                                "where p.nombre =:nombre OR p.codigoPieza = :codigoP",
                         Piezas.class)
                 .setParameter("nombre", nombre)
                 .setParameter("codigoP", codigo)

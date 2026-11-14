@@ -2,6 +2,8 @@ package org.egibide.proyecto3.Modelo;
 
 import org.egibide.proyecto3.Metodos.MetodosPiezas;
 import org.egibide.proyecto3.Metodos.MetodosProveedor;
+import org.egibide.proyecto3.Metodos.MetodosProyecto;
+import org.egibide.proyecto3.Metodos.Validaciones;
 
 import java.util.Scanner;
 
@@ -18,8 +20,10 @@ public class Menus {
                       5-mostrar proveedores
                       0-volver Menu
                     \s""");
+            System.out.println("seleccione una opcion:");
 
-            opcion = validarOpciones(scanner);
+            opcion = Validaciones.validarOpciones(scanner);
+
             switch (opcion) {
                 case 1:
                     MetodosProveedor.agregarProveedores(scanner);
@@ -31,13 +35,14 @@ public class Menus {
                     MetodosProveedor.ModificarProveedores(scanner);
                     break;
                 case 4:
+                    MetodosProveedor.buscarProveedores(scanner);
                     break;
                 case 5:
                     MetodosProveedor.listarProveedores(scanner);
+                    break;
             }
 
         } while (opcion != 0);
-
 
     }
 
@@ -52,7 +57,10 @@ public class Menus {
                     5-mostrar piezas
                     0-volver Menu
                     """);
-            seleccion = validarOpciones(scanner);
+            System.out.println("seleccione una opcion:");
+
+            seleccion = Validaciones.validarOpciones(scanner);
+
             switch (seleccion) {
                 case 1:
                     MetodosPiezas.agregarPiezas(scanner);
@@ -63,13 +71,11 @@ public class Menus {
                 case 3:
                     MetodosPiezas.modificarPiezas(scanner);
                     break;
-
                 case 4:
                     MetodosPiezas.buscarPiezas(scanner);
-
                     break;
                 case 5:
-                    MetodosPiezas.mostrarPiezas(scanner);
+                    MetodosPiezas.mostrarPiezas();
                     break;
 
             }
@@ -77,45 +83,38 @@ public class Menus {
         } while (seleccion != 0);
     }
 
+    public static void MenuProyectos(Scanner scanner) {
+        int opcion;
+        do {
+            System.out.println("""
+                            1-Agregar proyectos
+                            2-Eliminar proyectos
+                            3-Modificar proyectos
+                            4-Buscar proyectos
+                            5-mostrar proyectos
+                            0-volver Menu
+                    """);
+            System.out.println("seleccione una opcion:");
 
-    public static int validarOpciones(Scanner scanner) {
-        int opcion = 0;
-        boolean opcionValida = false;
-        while (!opcionValida) {
-            try {
-                System.out.println("Seleccione una opcion: ");
-                opcion = Integer.parseInt(scanner.nextLine());
-                opcionValida = true;
-
-            } catch (NumberFormatException e) {
-                System.out.println("Opcion no valida");
-            }
-
-
-        }
-        return opcion;
-
-
-    }
-
-    public static Double validarPrecio(Scanner scanner) {
-        double opcion = 0;
-        boolean opcionValida = false;
-        while (!opcionValida) {
-            try {
-                System.out.println("Ingrese precio : ");
-                opcion = Double.parseDouble(scanner.nextLine());
-                opcionValida = true;
-
-            } catch (NumberFormatException e) {
-                System.out.println("Formato no valido ... ");
+            opcion = Validaciones.validarOpciones(scanner);
+            switch (opcion) {
+                case 1:
+                    MetodosProyecto.agregarProyecto(scanner);
+                    break;
+                case 2:
+                    MetodosProyecto.eliminarProyecto(scanner);
+                    break;
+                case 3:
+                    MetodosProyecto.modificarProyecto(scanner);
+                    break;
+                case 4:
+                    MetodosProyecto.buscarProyecto(scanner);
+                    break;
 
             }
 
 
-        }
-        return opcion;
-
-
+        } while (opcion != 0);
     }
+
 }

@@ -1,6 +1,7 @@
+import org.egibide.proyecto3.Metodos.Validaciones;
 import org.egibide.proyecto3.Modelo.Menus;
+
 import java.util.Scanner;
-import static org.egibide.proyecto3.Modelo.Menus.validarOpciones;
 
 public class app {
     public static void main(String[] args) {
@@ -14,8 +15,8 @@ public class app {
                     4-Gestion de Suministros
                     0-Salir
                     """);
-            opcion = validarOpciones(scanner);
-
+            System.out.println("Seleccione una opcion: ");
+            opcion = Validaciones.validarOpciones(scanner);
 
             switch (opcion) {
                 case 1:
@@ -25,9 +26,10 @@ public class app {
                     Menus.MenuGestionPiezas(scanner);
                     break;
                 case 3:
+                    Menus.MenuProyectos(scanner);
 
                 case 4:
-                    break;
+
                 case 0:
                     System.out.println("El programa finaliza");
                 default:
