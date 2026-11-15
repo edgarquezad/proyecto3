@@ -1,9 +1,6 @@
 package org.egibide.proyecto3.Modelo;
 
-import org.egibide.proyecto3.Metodos.MetodosPiezas;
-import org.egibide.proyecto3.Metodos.MetodosProveedor;
-import org.egibide.proyecto3.Metodos.MetodosProyecto;
-import org.egibide.proyecto3.Metodos.Validaciones;
+import org.egibide.proyecto3.Metodos.*;
 
 import java.util.Scanner;
 
@@ -46,7 +43,7 @@ public class Menus {
 
     }
 
-    public static void MenuGestionPiezas(Scanner scanner) {
+    public static void MenuPiezas(Scanner scanner) {
         int seleccion;
         do {
             System.out.println("""
@@ -115,6 +112,32 @@ public class Menus {
 
 
         } while (opcion != 0);
+    }
+    public static void MenuGestion(Scanner scanner) {
+        int opcion;
+        do {
+            System.out.println("""
+                            1-Agregar Gestion 
+                            2-Eliminar Gestion
+                            3-Modificar Gestion
+                            4-Buscar Gestion
+                            5-mostrar Gestion
+                            0-volver Menu
+            """);
+            System.out.println("seleccione una opcion:");
+            opcion = Validaciones.validarOpciones(scanner);
+            switch (opcion) {
+                case 1:
+                    MetodosGestion.altaGestion(scanner);
+                    break;
+                case 2:
+                    MetodosGestion.eliminarGestion(scanner);
+                    break;
+                case 5:
+                    MetodosGestion.mostrarGestion(scanner);
+            }
+        }while (opcion != 0);
+
     }
 
 }

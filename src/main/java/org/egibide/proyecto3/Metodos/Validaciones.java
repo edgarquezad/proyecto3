@@ -41,8 +41,7 @@ public class Validaciones {
         boolean opcionValida = false;
         while (!opcionValida) {
             try {
-                System.out.println("Ingrese cantidad : ");
-                opcion = scanner.nextInt();
+                opcion = Integer.parseInt(scanner.nextLine());
                 opcionValida = true;
 
             } catch (NumberFormatException e) {

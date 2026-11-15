@@ -23,12 +23,13 @@ public class app {
                     Menus.MenuProveedores(scanner);
                     break;
                 case 2:
-                    Menus.MenuGestionPiezas(scanner);
+                    Menus.MenuPiezas(scanner);
                     break;
                 case 3:
                     Menus.MenuProyectos(scanner);
 
                 case 4:
+                    Menus.MenuGestion(scanner);
 
                 case 0:
                     System.out.println("El programa finaliza");
