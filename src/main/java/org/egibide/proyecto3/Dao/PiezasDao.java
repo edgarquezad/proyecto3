@@ -13,6 +13,18 @@ public class PiezasDao extends Dao<Piezas, String> implements IPiezasDao {
     }
 
     @Override
+    public Piezas buscarPorNombre(String nombrePiezas) {
+        return em.createQuery("select  p from  Piezas p where p.nombre= :nombre", Piezas.class)
+                .setParameter("nombre", nombrePiezas)
+                .setMaxResults(1)
+                .getResultList()
+                .stream()
+                .findFirst()
+                .orElse(null);
+
+    }
+
+    @Override
     public List<Piezas> listarPiezas() {
         return em.createQuery("select p from Piezas p", Piezas.class).getResultList();
     }

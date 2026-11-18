@@ -1,5 +1,6 @@
 package org.egibide.proyecto3.Metodos;
 
+import org.egibide.proyecto3.Dao.GestionDao;
 import org.egibide.proyecto3.Dao.ProyectoDao;
 import org.egibide.proyecto3.Modelo.Proyecto;
 
@@ -11,7 +12,7 @@ public class MetodosProyecto {
         ProyectoDao proyectoDao = new ProyectoDao();
 
         System.out.println("Introduce el codigo de Proyecto: ");
-        String codigoProyecto = scanner.nextLine();
+        String codigoProyecto = scanner.nextLine().toLowerCase();
 
         Proyecto proyecto = proyectoDao.find(codigoProyecto);
 
@@ -25,24 +26,38 @@ public class MetodosProyecto {
             System.out.println("Ciudad de Proyecto: ");
             String ciudadProyecto = scanner.nextLine();
 
-            proyecto = new Proyecto(codigoProyecto, nombreProyecto, ciudadProyecto);
-            proyectoDao.create(proyecto);
-            System.out.println("Proyecto agregado correctamente");
+            if (!nombreProyecto.isEmpty() && !ciudadProyecto.isEmpty() && !codigoProyecto.isEmpty()) {
+                proyecto = new Proyecto(codigoProyecto, nombreProyecto, ciudadProyecto);
+                proyectoDao.create(proyecto);
+
+                System.out.println("Proyecto agregado correctamente");
+            } else {
+                System.out.println("No se a guardado el proyecto ,Todos los campos son necesarios");
+            }
+
+
         }
 
 
     }
 
     public static void eliminarProyecto(Scanner scanner) {
+
         ProyectoDao proyectoDao = new ProyectoDao();
+        GestionDao gestionDao = new GestionDao();
 
         System.out.println("Introduce el codigo de Proyecto: ");
-        String codigoProyecto = scanner.next();
-
+        String codigoProyecto = scanner.nextLine();
         Proyecto proyecto = proyectoDao.find(codigoProyecto);
         if (proyecto != null) {
-            proyectoDao.delete(proyecto);
-            System.out.println("Proyecto eliminado correctamente");
+            if (gestionDao.existeGestionProyecto(codigoProyecto)) {
+                System.out.println("No se puede eliminar el proyecto " +
+                        proyecto.getCodigoProyecto() +
+                        " porque tiene gestiones asociadas.");
+            } else {
+                proyectoDao.delete(proyecto);
+                System.out.println("Proyecto " + proyecto.getCodigoProyecto() + " eliminado correctamente");
+            }
 
         } else {
             System.out.println("Proyecto no existe");
@@ -54,6 +69,9 @@ public class MetodosProyecto {
         System.out.println("Introduce el codigo de Proyecto: ");
         String codigoProyecto = scanner.nextLine();
 
+        boolean ciudadModificado = false;
+        boolean nombreModificado = false;
+
         Proyecto proyecto = proyectoDao.find(codigoProyecto);
         if (proyecto != null) {
 
@@ -61,37 +79,76 @@ public class MetodosProyecto {
             String nuevoNombre = scanner.nextLine();
             if (!nuevoNombre.isEmpty()) {
                 proyecto.setNombre(nuevoNombre);
+                nombreModificado = true;
             }
 
-            System.out.println("Nuevo ciudad de Proyecto , o enter para continuar ");
+            System.out.println("Nueva ciudad de Proyecto , o enter para continuar ");
             String nuevoCiudad = scanner.nextLine();
             if (!nuevoCiudad.isEmpty()) {
                 proyecto.setCiudad(nuevoCiudad);
+                ciudadModificado = true;
             }
-            proyectoDao.update(proyecto);
-            System.out.println("Proyecto actualizado correctamente");
+            if (ciudadModificado || nombreModificado) {
+                proyectoDao.update(proyecto);
+                System.out.println("\nProyecto modificado correctamente");
+
+                System.out.println("\nNombre: " + proyecto.getNombre() +
+                        "\nCiudad: " + proyecto.getCiudad()
+                );
+            } else {
+                System.out.println("No se han realizado cambios "
+                );
+            }
 
         } else {
-            System.out.println("Proyecto no existe");
+            System.out.println("El Proyecto" + codigoProyecto + "  no existe");
         }
+
     }
+
 
     public static void buscarProyecto(Scanner scanner) {
         ProyectoDao proyectoDao = new ProyectoDao();
         System.out.println("Introduce el codigo de Proyecto, nombre de Proyecto o ciudad ");
         String buscarProyecto = scanner.nextLine();
         List<Proyecto> proyectos = proyectoDao.busquedaProyecto(buscarProyecto, buscarProyecto, buscarProyecto);
-        if (proyectos != null) {
+        if (proyectos != null && !proyectos.isEmpty()) {
             for (Proyecto proyecto : proyectos) {
-                System.out.println("Nombre Proyecto: " + proyecto.getNombre() +
-                        "\nCiudad: " + proyecto.getCiudad() +
-                        "\nCodigo proyecto: " + proyecto.getCodigoProyecto()
+                System.out.println(
+                        "\nNombre Proyecto: " + proyecto.getNombre() +
+                                "\nCiudad: " + proyecto.getCiudad() +
+                                "\nCodigo proyecto: " + proyecto.getCodigoProyecto()
                 );
+                System.out.println();
 
             }
         } else {
             System.out.println("No existe ningun proyecto con los datos introducidos");
         }
+    }
+
+
+    public static void mostrarProyectos() {
+        ProyectoDao proyectoDao = new ProyectoDao();
+
+
+        List<Proyecto> listProyect = proyectoDao.obtenerProyectos();
+
+        if (listProyect != null && !listProyect.isEmpty()) {
+            System.out.println("|---Lista de Proyectos ---|");
+            for (Proyecto proyecto : listProyect) {
+                System.out.println(
+                        "\nCodigo Proyecto: " + proyecto.getCodigoProyecto() +
+                                "\nNombre: " + proyecto.getNombre() +
+                                "\nCiudad: " + proyecto.getCiudad() + "\n"
+
+                );
+                System.out.println();
+            }
+        } else {
+            System.out.println("No existen proyectos disponibles");
+        }
+
     }
 
 }

@@ -11,6 +11,18 @@ public class ProyectoDao extends Dao<Proyecto, String> implements IProyectoDao {
         return em.find(Proyecto.class, codigo);
     }
 
+    @Override
+    public Proyecto buscarPorNombre(String nombreProyecto) {
+        return em.createQuery("select n from Proyecto n where n.nombre = :nombre", Proyecto.class)
+                .setParameter("nombre", nombreProyecto)
+                .getResultList()
+                .stream()
+                .findFirst()
+                .orElse(null);
+
+
+    }
+
 
     @Override
     public List<Proyecto> busquedaProyecto(String codigoProyecto, String nombreProyecto, String ciudad) {
@@ -20,5 +32,10 @@ public class ProyectoDao extends Dao<Proyecto, String> implements IProyectoDao {
                 .setParameter("codigoProyecto", codigoProyecto)
                 .setParameter("ciudad", ciudad)
                 .getResultList();
+    }
+
+    @Override
+    public List<Proyecto> obtenerProyectos() {
+        return em.createQuery("select p from Proyecto p", Proyecto.class).getResultList();
     }
 }

@@ -1,5 +1,8 @@
 package org.egibide.proyecto3.Metodos;
 
+import org.hibernate.query.IllegalNamedQueryOptionsException;
+
+import java.net.IDN;
 import java.util.Scanner;
 
 public class Validaciones {
@@ -51,5 +54,21 @@ public class Validaciones {
 
         }
         return opcion;
+    }
+
+    public static int validarID(Scanner scanner) {
+        int id = 0;
+        boolean opcionValida = false;
+        while (!opcionValida) {
+            try {
+                System.out.println("\nIntroduce el ID de la gestión:");
+                id = Integer.parseInt(scanner.nextLine());
+                opcionValida = true;
+            }catch (NumberFormatException e) {
+                System.out.println("Formato no valido ... solo se admiten enteros");
+            }
+        }
+        return id;
+
     }
 }

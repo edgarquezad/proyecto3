@@ -1,6 +1,7 @@
 import org.egibide.proyecto3.Metodos.Validaciones;
 import org.egibide.proyecto3.Modelo.Menus;
 
+
 import java.util.Scanner;
 
 public class app {
@@ -27,18 +28,20 @@ public class app {
                     break;
                 case 3:
                     Menus.MenuProyectos(scanner);
-
+                    break;
                 case 4:
                     Menus.MenuGestion(scanner);
+                    break;
 
-                case 0:
-                    System.out.println("El programa finaliza");
+
                 default:
                     break;
             }
 
 
         } while (opcion != 0);
+        scanner.close();
+        System.out.println("Programa finalizado");
 
 
     }

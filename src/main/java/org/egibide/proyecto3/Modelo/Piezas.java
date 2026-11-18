@@ -70,7 +70,7 @@ public class Piezas {
                 ", nombre='" + nombre + '\'' +
                 ", precio=" + precio +
                 ", descripcion='" + descripcion + '\'' +
-                ", gestiones=" + gestiones +
+
                 '}';
     }
 }

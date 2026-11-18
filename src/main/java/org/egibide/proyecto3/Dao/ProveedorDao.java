@@ -14,9 +14,14 @@ public class ProveedorDao extends Dao<Proveedor, String> implements IProveedorDa
     }
 
     @Override
-    public List<Proveedor> buscarPorNombre(String nombre) {
+    public Proveedor buscarPorNombre(String nombre) {
         return em.createQuery("select p from Proveedor p where nombre = :nombre", Proveedor.class)
-                .setParameter("nombre", nombre).getResultList();
+                .setParameter("nombre", nombre)
+                .setMaxResults(1)
+                .getResultList()
+                .stream()
+                .findFirst()
+                .orElse(null);
     }
 
     @Override

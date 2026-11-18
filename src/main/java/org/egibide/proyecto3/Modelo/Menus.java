@@ -10,13 +10,13 @@ public class Menus {
         int opcion;
         do {
             System.out.println("""
-                      1-Agregar proveedores
-                      2-Eliminar proveedores
-                      3-Modificar proveedores
-                      4-Buscar proveedores
-                      5-mostrar proveedores
-                      0-volver Menu
-                    \s""");
+                    1-Agregar proveedores
+                    2-Eliminar proveedores
+                    3-Modificar proveedores
+                    4-Buscar proveedores
+                    5-mostrar proveedores
+                    0-volver Menu
+                    """);
             System.out.println("seleccione una opcion:");
 
             opcion = Validaciones.validarOpciones(scanner);
@@ -29,13 +29,13 @@ public class Menus {
                     MetodosProveedor.eliminarProveedores(scanner);
                     break;
                 case 3:
-                    MetodosProveedor.ModificarProveedores(scanner);
+                    MetodosProveedor.modificarProveedores(scanner);
                     break;
                 case 4:
                     MetodosProveedor.buscarProveedores(scanner);
                     break;
                 case 5:
-                    MetodosProveedor.listarProveedores(scanner);
+                    MetodosProveedor.listarProveedores();
                     break;
             }
 
@@ -47,6 +47,7 @@ public class Menus {
         int seleccion;
         do {
             System.out.println("""
+                    \n
                     1-Agregar piezas
                     2-Eliminar piezas
                     3-Modificar piezas
@@ -81,20 +82,20 @@ public class Menus {
     }
 
     public static void MenuProyectos(Scanner scanner) {
-        int opcion;
+        int opcion1;
         do {
             System.out.println("""
-                            1-Agregar proyectos
-                            2-Eliminar proyectos
-                            3-Modificar proyectos
-                            4-Buscar proyectos
-                            5-mostrar proyectos
-                            0-volver Menu
+                    1-Agregar proyectos
+                    2-Eliminar proyectos
+                    3-Modificar proyectos
+                    4-Buscar proyectos
+                    5-mostrar proyectos
+                    0-volver Menu
                     """);
             System.out.println("seleccione una opcion:");
 
-            opcion = Validaciones.validarOpciones(scanner);
-            switch (opcion) {
+            opcion1 = Validaciones.validarOpciones(scanner);
+            switch (opcion1) {
                 case 1:
                     MetodosProyecto.agregarProyecto(scanner);
                     break;
@@ -107,23 +108,26 @@ public class Menus {
                 case 4:
                     MetodosProyecto.buscarProyecto(scanner);
                     break;
-
+                case 5:
+                    MetodosProyecto.mostrarProyectos();
+                    break;
             }
 
-
-        } while (opcion != 0);
+        } while (opcion1 != 0);
     }
+
+
     public static void MenuGestion(Scanner scanner) {
         int opcion;
         do {
             System.out.println("""
-                            1-Agregar Gestion 
-                            2-Eliminar Gestion
-                            3-Modificar Gestion
-                            4-Buscar Gestion
-                            5-mostrar Gestion
-                            0-volver Menu
-            """);
+                     1-Agregar Gestion
+                     2-Eliminar Gestion
+                     3-Buscar Gestion
+                     4-Mostrar Gestiones / Suministros
+                     5-Modificar Gestion
+                     0-volver Menu
+                    """);
             System.out.println("seleccione una opcion:");
             opcion = Validaciones.validarOpciones(scanner);
             switch (opcion) {
@@ -133,10 +137,17 @@ public class Menus {
                 case 2:
                     MetodosGestion.eliminarGestion(scanner);
                     break;
+                case 3:
+                    MetodosGestion.buscarGestion(scanner);
+                    break;
+                case 4:
+                    MetodosGestion.mostrarGestion();
+                    break;
                 case 5:
-                    MetodosGestion.mostrarGestion(scanner);
+                    MetodosGestion.modificarGestion(scanner);
+                    break;
             }
-        }while (opcion != 0);
+        } while (opcion != 0);
 
     }
 
