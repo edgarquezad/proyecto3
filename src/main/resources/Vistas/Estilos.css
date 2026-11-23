@@ -1,0 +1,61 @@
+
+/* Fondo general */
+.fondo-principal {
+    -fx-background-color: #f0f2f4;
+}
+
+/* Menú lateral */
+.menu-lateral {
+    -fx-background-color: #172554;
+}
+
+/* Título GESTIÓN */
+.titulo-principal {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+/* Subtítulo */
+.subtitulo {
+    -fx-text-fill: #93C5FD;
+    -fx-font-size: 10px;
+}
+
+
+
+
+/* Botones del menú lateral */
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+
+/* Cuando pasamos el ratón por encima */
+.menu-button:hover {
+    -fx-background-color: #334477;
+}
+
+/* Cuando pulsamos el botón */
+.menu-button:pressed {
+    -fx-background-color: #40558A;
+}
+
+.label-descripcion{
+    -fx-font-size: 14px;
+    -fx-text-fill: #64748b
+}
+.label-TituloP{
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #172554;
+}
+
+.tabla-moderna {
+}

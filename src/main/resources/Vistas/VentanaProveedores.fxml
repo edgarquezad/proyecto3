@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.egibide.proyecto3.Controladores.VentanaProovedores"
+            prefHeight="400.0" prefWidth="600.0">
+    <VBox spacing="5">
+        <Label text="Proveedores" styleClass="subtitulo"/>
+        <Label text="Listado de Proveedores registradas."
+               styleClass="descripcion"/>
+    </VBox>
+
+    <HBox spacing="10">
+
+        <TextField fx:id="txtBuscar"
+                   promptText="Buscar por nombre o código..."
+
+                   HBox.hgrow="ALWAYS"/>
+
+        <Button text="Buscar"></Button>
+
+
+        <Button text="Limpiar"></Button>
+
+
+    </HBox>
+
+    <TableView fx:id="table"
+               VBox.vgrow="ALWAYS">
+
+        <columns>
+
+            <TableColumn fx:id="colCodigoProveedor"
+                         text="Código"
+                         prefWidth="130"/>
+
+            <TableColumn fx:id="colNombreProveedor"
+                         text="Nombre"
+                         prefWidth="180"/>
+
+            <TableColumn fx:id="colApellidoProveedor"
+                         text="Apellido"
+                         prefWidth="350"/>
+
+            <TableColumn fx:id="colDireccionPostalProveedor"
+                         text="Codigo Postal"
+                         prefWidth="120"/>
+
+        </columns>
+
+    </TableView>
+
+</VBox>
+

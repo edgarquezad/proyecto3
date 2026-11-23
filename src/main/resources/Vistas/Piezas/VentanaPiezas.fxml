@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.egibide.proyecto3.Controladores.VentanaPiezas"
+      spacing="20"
+      stylesheets="@../Estilos.css"
+      styleClass="contenedor">
+
+    <VBox spacing="5">
+        <Label text="Piezas" styleClass="subtitulo"/>
+        <Label text="Listado de piezas registradas."
+               styleClass="descripcion"/>
+    </VBox>
+    <VBox spacing="10">
+        <Label text="Datos de la pieza" styleClass="subtitulo"/>
+
+
+    </VBox>
+
+    <HBox spacing="10">
+
+        <TextField fx:id="txtBuscar"
+                   promptText="Buscar por nombre o código..."
+                   onAction="#buscarPiezas"
+                   HBox.hgrow="ALWAYS"/>
+
+        <Button text="Buscar"
+                onAction="#buscarPiezas"/>
+
+        <Button text="Limpiar"
+                onAction="#limpiarBusqueda"/>
+
+    </HBox>
+    <HBox spacing="10">
+        <Button fx:id="btnAgregar" text="Agregar Pieza" onAction="#mostrarFormulario">
+
+        </Button>
+        <Button fx:id="btnEditar" text="Editar Pieza" onAction="#editarFormulario" >
+
+        </Button>
+        <Button  fx:id="btnEliminar"  onAction="#eliminarPieza" text="Eliminar Pieza" >
+
+        </Button>
+
+
+    </HBox>
+    <VBox fx:id="contenedorContenido">
+
+
+        <TableView fx:id="tablaPiezas"
+                   VBox.vgrow="ALWAYS">
+
+            <columns>
+
+                <TableColumn fx:id="colCodigo"
+                             text="Código"
+                             prefWidth="130"/>
+
+                <TableColumn fx:id="colNombre"
+                             text="Nombre"
+                             prefWidth="180"/>
+
+                <TableColumn fx:id="colDescripcion"
+                             text="Descripción"
+                             prefWidth="350"/>
+
+                <TableColumn fx:id="colPrecio"
+                             text="Precio"
+                             prefWidth="120"/>
+
+            </columns>
+
+        </TableView>
+    </VBox>
+
+</VBox>

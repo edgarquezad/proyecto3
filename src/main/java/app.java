@@ -1,7 +1,6 @@
 import org.egibide.proyecto3.Metodos.Validaciones;
 import org.egibide.proyecto3.Modelo.Menus;
 
-
 import java.util.Scanner;
 
 public class app {

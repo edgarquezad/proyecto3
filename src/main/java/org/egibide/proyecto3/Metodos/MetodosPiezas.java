@@ -78,6 +78,7 @@ public class MetodosPiezas {
         List<Piezas> listaPiezas = piezasDao.listarPiezas();
         if (listaPiezas == null || listaPiezas.isEmpty()) {
             System.out.println("No existen piezas disponibles");
+
         } else {
             for (Piezas piezas : listaPiezas) {
                 System.out.println(

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.egibide.proyecto3.Controladores.VentanaProyectos"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <VBox spacing="5">
+        <Label text="Piezas" styleClass="subtitulo"/>
+        <Label text="Listado de piezas registradas."
+               styleClass="descripcion"/>
+    </VBox>
+
+    <HBox spacing="10">
+
+        <TextField fx:id="txtBuscar"
+                   promptText="Buscar por nombre o código..."
+                   onAction="#buscarPiezas"
+                   HBox.hgrow="ALWAYS"/>
+
+        <Button text="Buscar"
+                onAction="#buscarPiezas"/>
+
+        <Button text="Limpiar"
+                onAction="#limpiarBusqueda"/>
+
+    </HBox>
+
+    <TableView fx:id="tablaPiezas"
+               VBox.vgrow="ALWAYS">
+
+        <columns>
+
+            <TableColumn fx:id="colCodigo"
+                         text="Código"
+                         prefWidth="130"/>
+
+            <TableColumn fx:id="colNombre"
+                         text="Nombre"
+                         prefWidth="180"/>
+
+            <TableColumn fx:id="colDescripcion"
+                         text="Descripción"
+                         prefWidth="350"/>
+
+            <TableColumn fx:id="colPrecio"
+                         text="Precio"
+                         prefWidth="120"/>
+
+        </columns>
+
+    </TableView>
+
+</VBox>
+
+
